@@ -25,9 +25,13 @@ async def ask_for_image_query(message: types.Message):
     await message.reply("Какое изображение вы хотите получить? Напишите запрос.")
 
 @dp.message_handler(lambda message: message.text == "Отправить аудиофайл")
-async def send_help(message: types.Message):
+async def ask_for_audio_query(message: types.Message):
     user_requests[message.from_user.id] = "awaiting_query_mp3"  
     await message.reply("Какой аудиофайл вы хотите получить? Напишите запрос.")
+
+@dp.message_handler(commands=['github'])
+async def ask_for_github_query(message: types.Message):
+    await message.reply('https://github.com/ZBestProgrammer/Laba_OOP')
 
 @dp.message_handler()
 async def handle_query(message: types.Message):
